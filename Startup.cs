@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore;
+using sistema_reporte_ciudadano.Models;
 
 namespace sistema_reporte_ciudadano
 {
@@ -24,6 +26,7 @@ namespace sistema_reporte_ciudadano
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddDbContext<citizenReportContext>(opt => opt.UseNpgsql(Configuration.GetConnectionString("PostgreSqlConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
